@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->datetime('post_date');
+            $table->datetime('accept_date')->nullable();
+            $table->datetime('send_date')->nullable();
+            $table->boolean('deliver');
+            $table->string('deliver_address')->nullable();
+            $table->boolean('inovice');
             $table->timestamps();
         });
     }

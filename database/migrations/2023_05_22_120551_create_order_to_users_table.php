@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_to_products', function (Blueprint $table) {
+        Schema::create('order_to_users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders');
-            $table->integer('quantity');
+            $table->integer('role');
             $table->timestamps();
         });
     }
@@ -27,10 +27,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('order_to_products', function (Blueprint $table) {
-            $table->dropForeign(['product_id']);
+        Schema::table('order_to_users', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
             $table->dropForeign(['order_id']);
         });
-        Schema::dropIfExists('order_to_products');
+        Schema::dropIfExists('order_to_users');
     }
 };

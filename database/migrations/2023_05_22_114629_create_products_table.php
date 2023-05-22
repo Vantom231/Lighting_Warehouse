@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('subcategory_id');
+            $table->foreign('subcategory_id')->references('id')->on('subcategories');
+            $table->string('name');
+            $table->float('height');
+            $table->float('width');
+            $table->string('base_material')->nullable();
+            $table->string('lampshade_material')->nullable();
+            $table->string('light_source');
+            $table->string('light_source_connectors');
+            $table->integer('light_source_quantity')->nullable();
+            $table->float('power')->nullable();
+            $table->float('price');
             $table->timestamps();
         });
     }
@@ -22,6 +34,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropForeign(['subcategory_id']);
+        });
         Schema::dropIfExists('products');
     }
 };
