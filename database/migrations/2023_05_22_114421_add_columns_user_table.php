@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('pesel',11)->unique();
             $table->string('mailing_address');
-            $table->string('comapny_name')->nullable();
+            $table->string('company_name')->nullable();
             $table->string('nip',10)->unique()->nullable();
             $table->string('company_address')->nullable();
             $table->string('company_mailing_address')->nullable();
@@ -35,7 +35,7 @@ return new class extends Migration
             $table->dropColumn(['last_name']);
             $table->dropColumn(['pesel']);
             $table->dropColumn(['mailing_address']);
-            $table->dropColumn(['comapny_name']);
+            $table->dropColumn(['company_name']);
             $table->dropColumn(['nip']);
             $table->dropColumn(['company_address']);
             $table->dropColumn(['company_mailing_address']);
