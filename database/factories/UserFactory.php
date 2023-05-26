@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
@@ -10,6 +11,7 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends Factory
 {
+    private $counter = 0;
     /**
      * Define the model's default state.
      *
@@ -17,12 +19,41 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $this->counter++;
+        $company_name = NULL;
+        $nip = NULL;
+        $company_address = NULL;
+        $company_mailing_address = NULL;
+        $first_name = $this->faker->firstName();
+
+        if ($this->counter <= 4) $type = 'A';
+        else if ($this->counter <= 15) $type = 'W';
+        else {
+            $type = $this->faker->randomElement(['I', 'B']);
+
+            if ($type == 'B') {
+                $comapny_name = $this->faker->company();
+                $nip = (string)$this->faker->numberBetween(1000000000, 9999999999);
+                $company_address = $this->faker->streetAddress();
+                $company_mailing_address = $this->faker->address();
+            }
+        }
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'name' => $first_name,
+            'email' => $this->faker->unique()->email(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => Hash::make($first_name . "1234"),
             'remember_token' => Str::random(10),
+            'account_type' => $type,
+            'first_name' => $first_name,
+            'last_name' => $this->faker->lastName(),
+            'pesel' => (string)$this->faker->numberBetween(10000000000, 99999999999),
+            'mailing_address' => $this->faker->address(),
+            'company_name' => $company_name,
+            'nip' => $nip,
+            'company_address' => $company_address,
+            'company_mailing_address' => $company_mailing_address
         ];
     }
 
