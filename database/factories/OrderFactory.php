@@ -16,8 +16,16 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
+        $deliver = $this->faker->randomElement([TRUE,FALSE]);
+
+        $deliver_address = null;
+        if ($deliver == TRUE) $deliver_address = $this->faker->streetAddress();
+
         return [
-            //
+            'post_date' => $this->faker->dateTimeThisCentury(),
+            'deliver' => $deliver,
+            'deliver_address' => $deliver_address,
+            'invoice' => $this->faker->randomElement([TRUE, FALSE])
         ];
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->datetime('send_date')->nullable();
             $table->boolean('deliver');
             $table->string('deliver_address')->nullable();
-            $table->boolean('inovice');
+            $table->boolean('invoice');
             $table->timestamps();
         });
     }
