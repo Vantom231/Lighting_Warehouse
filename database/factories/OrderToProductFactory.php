@@ -17,7 +17,9 @@ class OrderToProductFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'product_id' => $this->faker->numberBetween(1,57),
+            'order_id' => $this->faker->numberBetween(1,60),
+            'quantity' => $this->faker->numberBetween(1,10)
         ];
     }
 }

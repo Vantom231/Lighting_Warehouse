@@ -17,7 +17,9 @@ class OrderToUserFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => $this->faker->numberBetween(16,50),
+            'order_id' => $this->faker->numberBetween(1,60),
+            'role' => 'c'
         ];
     }
 }
