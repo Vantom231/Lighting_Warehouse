@@ -25,7 +25,8 @@ return new class extends Migration
             $table->integer('light_source_quantity')->nullable();
             $table->float('power')->nullable();
             $table->float('price');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
+            $table->string('img_path')->nullable();
             $table->timestamps();
         });
     }
