@@ -65,7 +65,8 @@ class ProductFactory extends Factory
             'light_source_connectors' => 'brak informacji',
             'light_source_quantity' => $light_source_quantity,
             'power' => $this->faker->numberBetween(50,100),
-            'price' => $this->faker->numberBetween(2000,50000)/100
+            'price' => $this->faker->numberBetween(2000,50000)/100,
+            'description' => $this->faker->text()
         ];
     }
 }
