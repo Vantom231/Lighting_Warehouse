@@ -20,6 +20,24 @@ http://127.0.0.1:8000/api/subcategories
 
 http://127.0.0.1:8000/api/subcategories/3
 
+### // order
+
+http://127.0.0.1:8000/api/orders
+
+###
+
+http://127.0.0.1:8000/api/orders/3
+
+### // product
+
+http://127.0.0.1:8000/api/products
+
+###
+
+http://127.0.0.1:8000/api/products/3
+
+
+
 
 
 
