@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Subcategory;
 use App\Http\Requests\StoreSubcategoryRequest;
 use App\Http\Requests\UpdateSubcategoryRequest;
+use App\Http\Resources\SubcategoryCollection;
+use App\Http\Resources\SubcategoryResource;
 
 class SubcategoryController extends Controller
 {
@@ -13,7 +15,7 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        //
+        return new SubcategoryCollection(Subcategory::paginate(10));
     }
 
     /**
@@ -37,7 +39,7 @@ class SubcategoryController extends Controller
      */
     public function show(Subcategory $subcategory)
     {
-        //
+        return new SubcategoryResource($subcategory);
     }
 
     /**
