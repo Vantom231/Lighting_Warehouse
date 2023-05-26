@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\OrderToProduct;
 use App\Http\Requests\StoreOrderToProductRequest;
 use App\Http\Requests\UpdateOrderToProductRequest;
+use App\Http\Resources\OrderToProductCollection;
+use App\Http\Resources\OrderToProductResource;
 
 class OrderToProductController extends Controller
 {
@@ -13,7 +15,7 @@ class OrderToProductController extends Controller
      */
     public function index()
     {
-        //
+        return new OrderToProductCollection(OrderToProduct::paginate(15));
     }
 
     /**
@@ -37,7 +39,8 @@ class OrderToProductController extends Controller
      */
     public function show(OrderToProduct $orderToProduct)
     {
-        //
+        return new OrderToProductResource($orderToProduct);
+        // return $orderToProduct;
     }
 
     /**

@@ -36,8 +36,18 @@ http://127.0.0.1:8000/api/products
 
 http://127.0.0.1:8000/api/products/3
 
+###  // orderToProduct
 
+http://127.0.0.1:8000/api/orderToProducts
 
+###
 
+http://127.0.0.1:8000/api/orderToProducts/1
 
+###  // orderToUser
 
+http://127.0.0.1:8000/api/orderToUsers
+
+###
+
+http://127.0.0.1:8000/api/orderToUsers/7

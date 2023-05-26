@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\OrderToUser;
 use App\Http\Requests\StoreOrderToUserRequest;
 use App\Http\Requests\UpdateOrderToUserRequest;
+use App\Http\Resources\OrderToUserCollection;
+use App\Http\Resources\OrderToUserResource;
 
 class OrderToUserController extends Controller
 {
@@ -13,7 +15,7 @@ class OrderToUserController extends Controller
      */
     public function index()
     {
-        //
+        return new OrderToUserCollection(OrderToUser::paginate(15));
     }
 
     /**
@@ -37,7 +39,7 @@ class OrderToUserController extends Controller
      */
     public function show(OrderToUser $orderToUser)
     {
-        //
+        return new OrderToUserResource($orderToUser);
     }
 
     /**

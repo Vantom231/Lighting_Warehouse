@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderToProductController;
+use App\Http\Controllers\OrderToUserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubcategoryController;
 use Illuminate\Http\Request;
@@ -28,4 +30,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function() {
     Route::apiResource('subcategories', SubcategoryController::class);
     Route::apiResource('orders', OrderController::class);
     Route::apiResource('products', ProductController::class);
+    Route::apiResource('orderToProducts', OrderToProductController::class);
+    Route::apiResource('orderToUsers', OrderToUserController::class);
 });
