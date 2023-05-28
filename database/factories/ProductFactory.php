@@ -43,7 +43,22 @@ class ProductFactory extends Factory
         $base_material = NULL;
         $lampshade_material = NULL;
         $light_source_quantity = NULL;
+        $lumens = NULL;
+        $energyOld = NULL;
+        $energyNew = NULL;
+        $colTempMin = NULL;
+        $colTempMax = Null;
+         $energy = [
+            'A+++' => 'A',
+            'A++' => 'B',
+            'A+' => 'C',
+            'A' => 'D',
+            'B' => 'E',
+            'C' => 'F',
+            'D' => 'G'
+        ];
         $this->counter++;
+
 
         if ($this->counter%3 == 1) $this->subcategoryCounter++;
 
@@ -51,6 +66,12 @@ class ProductFactory extends Factory
             $base_material = $this->faker->randomElement(['drewno', 'metal', 'inne']);
             $lampshade_material = $this->faker->randomElement(['przezroczyste', 'półprzezroczyste', 'nieprzezroczyste']);
             $light_source_quantity = $this->faker->numberBetween(1,5);
+        } else {
+            $lumens = $this->faker->numberBetween(5000,10000);
+            $energyOld = $this->faker->randomElement(['A+++', 'A++', 'A+', 'A', 'B', 'C', 'D']);
+            $energyNew = $energy[$energyOld];
+            $colTempMin = $this->faker->numberBetween(1,12)*1000;
+            $colTempMax = $this->faker->numberBetween(1,3)*10000;
         }
 
 
@@ -65,6 +86,11 @@ class ProductFactory extends Factory
             'light_source_connectors' => 'brak informacji',
             'light_source_quantity' => $light_source_quantity,
             'power' => $this->faker->numberBetween(50,100),
+            'lumens' => $lumens,
+            'color_temperature_max' => $colTempMax,
+            'color_temperature_min' => $colTempMin,
+            'energy_class_old' => $energyOld,
+            'energy_class_new' => $energyNew,
             'price' => $this->faker->numberBetween(2000,50000)/100,
             'description' => $this->faker->text()
         ];

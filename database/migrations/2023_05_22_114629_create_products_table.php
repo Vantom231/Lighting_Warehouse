@@ -28,7 +28,7 @@ return new class extends Migration
             $table->float('lumens')->nullable();
             $table->float('color_temperature_max')->nullable();
             $table->float('color_temperature_min')->nullable();
-            $table->string('enegry_class_old')->nullable();
+            $table->string('energy_class_old')->nullable();
             $table->string('energy_class_new')->nullable();
             $table->text('description')->nullable();
             $table->string('img_path')->nullable();
