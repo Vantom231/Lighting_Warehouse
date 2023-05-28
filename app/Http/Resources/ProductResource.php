@@ -26,7 +26,10 @@ class ProductResource extends JsonResource
             'lightSourceConnectors' => $this->light_source_connectors,
             'lightSourceQuantity' => $this->light_source_quantity,
             'power' => $this->power,
-            'price' => $this->power,
+            'price' => $this->price,
+            'lumens' => $this->lumens,
+            'colorTemperatureMax' => $this->color_temperature_max,
+            'colorTemperatureMin' => $this->color_temperature_min,
             'description' => $this->description,
             'imgPath' => $this->img_path
         ];

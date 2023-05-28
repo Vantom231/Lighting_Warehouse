@@ -67,7 +67,7 @@ class ProductFactory extends Factory
             $lampshade_material = $this->faker->randomElement(['przezroczyste', 'półprzezroczyste', 'nieprzezroczyste']);
             $light_source_quantity = $this->faker->numberBetween(1,5);
         } else {
-            $lumens = $this->faker->numberBetween(5000,10000);
+            $lumens = $this->faker->numberBetween(400,4000);
             $energyOld = $this->faker->randomElement(['A+++', 'A++', 'A+', 'A', 'B', 'C', 'D']);
             $energyNew = $energy[$energyOld];
             $colTempMin = $this->faker->numberBetween(1,12)*1000;
