@@ -2,20 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\ProductFilter;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new ProductCollection(Product::paginate(10));
+        $filter = new ProductFilter();
+        $query = $filter->transform($request);
+
+        if (count($query) == 0){
+            return new ProductCollection(Product::paginate(10));
+
+        }
+
+        return new ProductCollection(Product::where($query)->paginate(10));
     }
 
     /**
