@@ -7,15 +7,24 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Resources\OrderCollection;
 use App\Http\Resources\OrderResource;
+use App\Filters\OrderFilter;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new OrderCollection(Order::paginate(15));
+        $filter = new OrderFilter();
+        $queryItems = $filter->transform($request);
+
+        if(count($queryItems) == 0) {
+            return new OrderCollection(Order::paginate(15));
+        }
+
+        return new OrderCollection(Order::where($queryItems)->paginate(15));
     }
 
     /**
