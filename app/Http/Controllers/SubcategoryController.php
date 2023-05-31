@@ -2,20 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\SubcategoryFilter;
 use App\Models\Subcategory;
 use App\Http\Requests\StoreSubcategoryRequest;
 use App\Http\Requests\UpdateSubcategoryRequest;
 use App\Http\Resources\SubcategoryCollection;
 use App\Http\Resources\SubcategoryResource;
+use Illuminate\Http\Request;
 
 class SubcategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new SubcategoryCollection(Subcategory::paginate(10));
+        $filter = new SubcategoryFilter();
+        $query = $filter->transform($request);
+
+        if (count($query) == 0){
+            return new SubcategoryCollection(Subcategory::paginate(10));
+        } else {
+            return new SubcategoryCollection(Subcategory::where($query)->paginate(10));
+
+        }
     }
 
     /**

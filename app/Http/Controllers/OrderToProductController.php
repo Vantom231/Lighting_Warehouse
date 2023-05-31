@@ -2,20 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\OrderToProductFilter;
 use App\Models\OrderToProduct;
 use App\Http\Requests\StoreOrderToProductRequest;
 use App\Http\Requests\UpdateOrderToProductRequest;
 use App\Http\Resources\OrderToProductCollection;
 use App\Http\Resources\OrderToProductResource;
+use Illuminate\Http\Request;
 
 class OrderToProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new OrderToProductCollection(OrderToProduct::paginate(15));
+        $filter = new OrderToProductFilter();
+        $query = $filter->transform($request);
+
+        if (count($query) == 0) {
+            return new OrderToProductCollection(OrderToProduct::paginate(15));
+        } else {
+            return new OrderToProductCollection(OrderToProduct::where($query)->paginate(15));
+        }
     }
 
     /**

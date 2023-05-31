@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\UserFilter;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserCollection;
@@ -14,9 +15,16 @@ class UserController extends Controller
      /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new UserCollection(User::paginate(10));
+        $filter = new UserFilter();
+        $query = $filter->transform($request);
+
+        if (count($query) == 0) {
+            return new UserCollection(User::paginate(10));
+        } else {
+            return new UserCollection(User::where($query)->paginate(10));
+        }
     }
 
     /**

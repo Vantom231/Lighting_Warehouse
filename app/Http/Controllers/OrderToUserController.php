@@ -2,20 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\OrderToUserFilter;
 use App\Models\OrderToUser;
 use App\Http\Requests\StoreOrderToUserRequest;
 use App\Http\Requests\UpdateOrderToUserRequest;
 use App\Http\Resources\OrderToUserCollection;
 use App\Http\Resources\OrderToUserResource;
+use Illuminate\Http\Request;
 
 class OrderToUserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new OrderToUserCollection(OrderToUser::paginate(15));
+        $filter = new OrderToUserFilter();
+        $query = $filter->transform($request);
+
+        if (count($query) == 0) {
+            return new OrderToUserCollection(OrderToUser::paginate(15));
+        } else {
+            return new OrderToUserCollection(OrderToUser::where($query)->paginate(15));
+        }
     }
 
     /**

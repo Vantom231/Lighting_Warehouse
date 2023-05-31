@@ -6,6 +6,10 @@ http://127.0.0.1:8000/api/users
 
 http://127.0.0.1:8000/api/users/3
 
+###
+
+http://127.0.0.1:8000/api/users?id[lte]=5
+
 ### // category
 
 http://127.0.0.1:8000/api/categories
@@ -41,6 +45,10 @@ http://127.0.0.1:8000/api/products
 ###
 
 http://127.0.0.1:8000/api/products/51
+
+###
+
+http://127.0.0.1:8000/api/products?id[lte]=10&width[lt]=5
 
 ###  // orderToProduct
 

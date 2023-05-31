@@ -27,8 +27,6 @@ class UserResource extends JsonResource
             'nip' => $this->nip,
             'companyAddress' => $this->company_address,
             'companyMailingAddress' => $this->company_mailing_address,
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
             'accountType' => $this->account_type,
             ];
     }
