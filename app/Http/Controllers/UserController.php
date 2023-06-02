@@ -70,8 +70,8 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $category)
+    public function destroy(User $user)
     {
-        //
+        $user->destroy($user->id);
     }
 }

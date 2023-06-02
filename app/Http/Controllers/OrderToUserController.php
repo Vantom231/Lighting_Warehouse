@@ -72,6 +72,6 @@ class OrderToUserController extends Controller
      */
     public function destroy(OrderToUser $orderToUser)
     {
-        //
+        $orderToUser->destroy($orderToUser->id);
     }
 }

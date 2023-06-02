@@ -73,6 +73,6 @@ class SubcategoryController extends Controller
      */
     public function destroy(Subcategory $subcategory)
     {
-        //
+        $subcategory->destory($subcategory->id);
     }
 }

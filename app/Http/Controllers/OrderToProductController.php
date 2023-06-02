@@ -73,6 +73,6 @@ class OrderToProductController extends Controller
      */
     public function destroy(OrderToProduct $orderToProduct)
     {
-        //
+        $orderToProduct->destroy($orderToProduct->id);
     }
 }

@@ -63,6 +63,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->destroy($category->id);
     }
 }
