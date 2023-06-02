@@ -40,7 +40,7 @@ class OrderToProductController extends Controller
      */
     public function store(StoreOrderToProductRequest $request)
     {
-        //
+        return new OrderToProductResource(OrderToProduct::create($request->all()));
     }
 
     /**

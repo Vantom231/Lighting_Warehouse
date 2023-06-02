@@ -11,7 +11,7 @@ class StoreOrderRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,23 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'postDate' => ['required', 'date'],
+            'acceptDate' => ['date'],
+            'sendDate' => ['date'],
+            'deliver' => ['required', 'boolean'],
+            'deliverAddress' => ['string'],
+            'invoice' => ['required', 'boolean']
         ];
     }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'post_date' => $this->postDate,
+            'accept_date' => $this->acceptDate,
+            'send_date' => $this->sendDate,
+            'deliver_address' => $this->deliverAddress
+        ]);
+    }
+
 }

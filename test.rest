@@ -26,6 +26,10 @@ http://127.0.0.1:8000/api/subcategories
 
 http://127.0.0.1:8000/api/subcategories/3
 
+###
+
+http://127.0.0.1:8000/api/subcategories?id[gte]=4
+
 ### // order
 
 http://127.0.0.1:8000/api/orders
@@ -58,6 +62,10 @@ http://127.0.0.1:8000/api/orderToProducts
 
 http://127.0.0.1:8000/api/orderToProducts/1
 
+###
+
+http://127.0.0.1:8000/api/orderToProducts?productId[lte]=3&orderId[gte]=30
+
 ###  // orderToUser
 
 http://127.0.0.1:8000/api/orderToUsers
@@ -65,3 +73,7 @@ http://127.0.0.1:8000/api/orderToUsers
 ###
 
 http://127.0.0.1:8000/api/orderToUsers/7
+
+###
+
+http://127.0.0.1:8000/api/orderToUsers?userId[gte]=20

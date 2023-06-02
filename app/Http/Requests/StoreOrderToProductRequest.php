@@ -11,7 +11,7 @@ class StoreOrderToProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,17 @@ class StoreOrderToProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'productId' => ['required', 'integer'],
+            'orderId' => ['required', 'integer'],
+            'quantity' => ['required', 'integer']
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'product_id' => $this->productId,
+            'order_id' => $this->orderId
+        ]);
     }
 }

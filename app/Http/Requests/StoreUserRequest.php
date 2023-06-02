@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class StoreUserRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,31 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string'],
+            'firstName' => ['required', 'string'],
+            'lastName' => ['required', 'string'],
+            'pesel' => ['required'],
+            'email' => ['required', 'email'],
+            'password' => ['required','string'],
+            'mailingAddress' => ['required', 'string'],
+            'companyName' => ['string'],
+            'nip' => ['string'],
+            'companyAddress'=> ['string'],
+            'companyMailingAddress' => ['string'],
+            'accountType' => ['required', Rule::in(['A', 'W', 'C'])]
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'first_name' => $this->firstName,
+            'last_name' => $this->lastName,
+            'mailing_address' => $this->mailingAddress,
+            'company_name' => $this->companyName,
+            'company_address' => $this->companyAddress,
+            'company_mailing_address' => $this->companyMailingAddress,
+            'account_type' => $this->accountType,
+        ]);
     }
 }

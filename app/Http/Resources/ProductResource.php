@@ -16,7 +16,7 @@ class ProductResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'subactegoryId' => $this->subcategory_id,
+            'subcategoryId' => $this->subcategory_id,
             'name' => $this->name,
             'height' => $this->height,
             'width' => $this->width,
@@ -30,6 +30,8 @@ class ProductResource extends JsonResource
             'lumens' => $this->lumens,
             'colorTemperatureMax' => $this->color_temperature_max,
             'colorTemperatureMin' => $this->color_temperature_min,
+            'energyClassOld' => $this->energy_class_old,
+            'energyClassNew' => $this->energy_class_new,
             'description' => $this->description,
             'imgPath' => $this->img_path
         ];

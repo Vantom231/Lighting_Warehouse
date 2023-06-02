@@ -21,6 +21,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'account_type',
+        'first_name',
+        'last_name',
+        'pesel',
+        'mailing_address',
+        'company_name',
+        'nip',
+        'company_address',
+        'company_mailing_address'
     ];
 
     /**

@@ -11,7 +11,7 @@ class StoreSubcategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class StoreSubcategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required'],
+            'categoryId' => ['required', 'integer']
         ];
+    }
+
+    protected function prepareForValidation() {
+        $this->merge([
+            'category_id' => $this->categoryId
+        ]);
     }
 }

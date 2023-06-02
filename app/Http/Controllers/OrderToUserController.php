@@ -40,7 +40,7 @@ class OrderToUserController extends Controller
      */
     public function store(StoreOrderToUserRequest $request)
     {
-        //
+        return new OrderToUserResource(OrderToUser::create($request->all()));
     }
 
     /**

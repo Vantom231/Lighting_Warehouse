@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreOrderToUserRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class StoreOrderToUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,17 @@ class StoreOrderToUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'userId' => ['required', 'integer'],
+            'orderId' => ['required', 'integer'],
+            'role' => ['required', Rule::in(['C','A','S'])]
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'user_id' => $this->userId,
+            'order_id' => $this->orderId,
+        ]);
     }
 }

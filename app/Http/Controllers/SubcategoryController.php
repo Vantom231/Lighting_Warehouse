@@ -41,7 +41,7 @@ class SubcategoryController extends Controller
      */
     public function store(StoreSubcategoryRequest $request)
     {
-        //
+        return new SubcategoryResource(Subcategory::create($request->all()));
     }
 
     /**
