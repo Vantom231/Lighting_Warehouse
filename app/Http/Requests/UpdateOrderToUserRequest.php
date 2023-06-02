@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateOrderToUserRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateOrderToUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +22,26 @@ class UpdateOrderToUserRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+
+        if ($method == 'PUT') {
+            return [
+                'userId' => ['required', 'integer'],
+                'orderId' => ['required', 'integer'],
+                'role' => ['required', Rule::in(['C','A','S'])]
+            ];
+        } else {
+            return [
+                'userId' => ['sometimes', 'required', 'integer'],
+                'orderId' => ['sometimes', 'required', 'integer'],
+                'role' => ['sometimes', 'required', Rule::in(['C','A','S'])]
+            ];
+        }
+    }
+
+    protected function prepareForValidation()
+    {
+        if ($this->userId) $this->merge(['user_id' => $this->userId]);
+        if ($this->orderId) $this->merge(['order_id' => $this->orderId]);
     }
 }

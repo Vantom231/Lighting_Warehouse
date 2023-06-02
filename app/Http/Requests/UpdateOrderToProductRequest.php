@@ -11,7 +11,7 @@ class UpdateOrderToProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,26 @@ class UpdateOrderToProductRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+
+        if ($method == 'PUT') {
+            return [
+                'productId' => ['required', 'integer'],
+                'orderId' => ['required', 'integer'],
+                'quantity' => ['required', 'integer']
+            ];
+        } else {
+            return [
+                'productId' => ['sometimes', 'required', 'integer'],
+                'orderId' => ['sometimes', 'required', 'integer'],
+                'quantity' => ['sometimes', 'required', 'integer']
+            ];
+        }
+    }
+
+    protected function prepareForValidation()
+    {
+        if ($this->productId) $this->merge(['product_id' => $this->productId]);
+        if ($this->orderId) $this->merge(['order_id' => $this->orderId]);
     }
 }

@@ -11,7 +11,7 @@ class UpdateOrderRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,34 @@ class UpdateOrderRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+
+        if ($method == 'PUT') {
+            return [
+                'postDate' => ['required', 'date'],
+                'acceptDate' => ['date'],
+                'sendDate' => ['date'],
+                'deliver' => ['required', 'boolean'],
+                'deliverAddress' => ['string'],
+                'invoice' => ['required', 'boolean']
+            ];
+        } else {
+            return [
+                'postDate' => ['sometimes', 'required', 'date'],
+                'acceptDate' => ['sometimes', 'date'],
+                'sendDate' => ['sometimes', 'date'],
+                'deliver' => ['sometimes', 'required', 'boolean'],
+                'deliverAddress' => ['sometimes', 'string'],
+                'invoice' => ['sometimes', 'required', 'boolean']
+            ];
+        }
+    }
+
+    protected function prepareForValidation()
+    {
+        if ($this->postDate) $this->merge(['post_date' => $this->postDate]);
+        if ($this->acceptDate) $this->merge(['accept_date' => $this->acceptDate]);
+        if ($this->sendDate) $this->merge(['send_date' => $this->sendDate]);
+        if ($this->deliverAddress) $this->merge(['deliver_address' => $this->deliverAddress]);
     }
 }

@@ -64,7 +64,7 @@ class OrderToUserController extends Controller
      */
     public function update(UpdateOrderToUserRequest $request, OrderToUser $orderToUser)
     {
-        //
+        $orderToUser->update($request->all());
     }
 
     /**

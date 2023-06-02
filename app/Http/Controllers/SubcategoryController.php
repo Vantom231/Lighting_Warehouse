@@ -65,7 +65,7 @@ class SubcategoryController extends Controller
      */
     public function update(UpdateSubcategoryRequest $request, Subcategory $subcategory)
     {
-        //
+        $subcategory->update($request->all());
     }
 
     /**

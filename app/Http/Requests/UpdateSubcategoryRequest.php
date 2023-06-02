@@ -11,7 +11,7 @@ class UpdateSubcategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,22 @@ class UpdateSubcategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+
+        if ($method == 'PUT') {
+            return [
+                'name' => ['required'],
+                'categoryId' => ['required', 'integer']
+            ];
+        } else {
+            return [
+                'name' => ['sometimes', 'required'],
+                'categoryId' => ['sometimes', 'required', 'integer']
+            ];
+        }
+    }
+
+    protected function prepareForValidation() {
+        if ($this->categoryId) $this->merge(['category_id' => $this->categoryId]);
     }
 }
