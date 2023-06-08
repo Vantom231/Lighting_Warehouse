@@ -35,7 +35,7 @@ class StoreUserRequest extends FormRequest
             'nip' => ['string'],
             'companyAddress'=> ['string'],
             'companyMailingAddress' => ['string'],
-            'accountType' => ['required', Rule::in(['A', 'W', 'C'])]
+            'accountType' => ['required', Rule::in(['A', 'W', 'I', 'B'])]
         ];
     }
 
