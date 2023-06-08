@@ -4,7 +4,7 @@ namespace App\Filters;
 class ProductFilter extends Filter {
     protected $safeParms = [
         'id' => ['eq', 'neq', 'lt', 'lte', 'gt', 'gte'],
-        'subactegoryId' => ['eq', 'neq', 'lt', 'lte', 'gt', 'gte'],
+        'subcategoryId' => ['eq', 'neq', 'lt', 'lte', 'gt', 'gte'],
         'name' => ['eq', 'neq'],
         'height' => ['eq', 'neq', 'lt', 'lte', 'gt', 'gte'],
         'width' => ['eq', 'neq', 'lt', 'lte', 'gt', 'gte'],
@@ -21,7 +21,7 @@ class ProductFilter extends Filter {
         'description' => ['eq', 'neq']
     ];
     protected $columnMap = [
-        'subactegoryId' => 'subcategory_id',
+        'subcategoryId' => 'subcategory_id',
         'baseMaterial' => 'base_material',
         'lampshadeMateiral' => 'lampshade_material',
         'lightSource' => 'light_source',

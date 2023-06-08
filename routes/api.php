@@ -1,5 +1,7 @@
 <?php
 
+use App\Filters\ProductFilter;
+use App\Filters\SubcategoryFilter;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderToProductController;
@@ -8,7 +10,13 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Requests\AuthRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Resources\CategoryCollection;
+use App\Http\Resources\ProductCollection;
+use App\Http\Resources\SubcategoryCollection;
 use App\Http\Resources\UserResource;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Subcategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,9 +33,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return new UserResource($request->user());
+});
 
 Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);
@@ -40,7 +48,7 @@ Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => 'auth:sanct
 });
 
 
-Route::get('login', function (AuthRequest $request) {
+Route::post('login', function (AuthRequest $request) {
     if (Auth::attempt($request->all())){
 
         $user = Auth::user();
@@ -55,3 +63,33 @@ Route::get('login', function (AuthRequest $request) {
 Route::post('register', function (StoreUserRequest $request) {
     return new UserResource(User::create($request->all()));
 });
+
+Route::get('categories',function () {
+    return new CategoryCollection(Category::all());
+});
+
+Route::get('subcategories', function (Request $request) {
+    $filter = new SubcategoryFilter();
+    $query = $filter->transform($request);
+
+    if (count($query) == 0){
+        return new SubcategoryCollection(Subcategory::paginate(10));
+    } else {
+        return new SubcategoryCollection(Subcategory::where($query)->paginate(10));
+
+    }
+});
+
+Route::get('products', function (Request $request) {
+
+    $filter = new ProductFilter();
+    $query = $filter->transform($request);
+
+    if (count($query) == 0){
+        return new ProductCollection(Product::paginate(10));
+
+    }
+
+    return new ProductCollection(Product::where($query)->paginate(10));
+});
+
