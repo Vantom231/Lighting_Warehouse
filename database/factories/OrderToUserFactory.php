@@ -19,7 +19,7 @@ class OrderToUserFactory extends Factory
         return [
             'user_id' => $this->faker->numberBetween(16,50),
             'order_id' => $this->faker->numberBetween(1,60),
-            'role' => 'c'
+            'role' => 'C'
         ];
     }
 }

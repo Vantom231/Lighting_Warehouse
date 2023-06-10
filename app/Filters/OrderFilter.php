@@ -10,6 +10,7 @@ class OrderFilter extends Filter {
         'deliver' => ['eq', 'neq'],
         'deliverAddress' => ['eq', 'neq'],
         'invoice' => ['eq', 'neq'],
+        'finished' => ['eq', 'neq']
     ];
     protected $columnMap = [
         'postDate' => 'post_date',

@@ -21,7 +21,8 @@ class OrderResource extends JsonResource
             'sendDate' => $this->send_date,
             'deliver' => $this->deliver,
             'deliverAddress' => $this->deliver_address,
-            'invoice' => $this->invoice
+            'invoice' => $this->invoice,
+            'finished' => $this->finished
         ];
     }
 }

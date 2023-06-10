@@ -30,7 +30,8 @@ class UpdateOrderRequest extends FormRequest
                 'sendDate' => ['date'],
                 'deliver' => ['required', 'boolean'],
                 'deliverAddress' => ['string'],
-                'invoice' => ['required', 'boolean']
+                'invoice' => ['required', 'boolean'],
+                'finished' => ['required', 'boolean']
             ];
         } else {
             return [
@@ -39,7 +40,8 @@ class UpdateOrderRequest extends FormRequest
                 'sendDate' => ['sometimes', 'date'],
                 'deliver' => ['sometimes', 'required', 'boolean'],
                 'deliverAddress' => ['sometimes', 'string'],
-                'invoice' => ['sometimes', 'required', 'boolean']
+                'invoice' => ['sometimes', 'required', 'boolean'],
+                'finished' => ['sometimes', 'required', 'boolean']
             ];
         }
     }

@@ -13,6 +13,7 @@ class Order extends Model
         'post_date',
         'accept_date',
         'send_date',
+        'finished',
         'deliver',
         'deliver_address',
         'invoice'

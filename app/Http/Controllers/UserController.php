@@ -9,6 +9,7 @@ use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -17,12 +18,20 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+
         $filter = new UserFilter();
         $query = $filter->transform($request);
 
         if (count($query) == 0) {
+            if (Auth::user()->account_type == 'I' || Auth::user()->account_type == 'B') {
+                return new UserResource(Auth::user());
+            }
             return new UserCollection(User::paginate(10));
         } else {
+
+            if (Auth::user()->account_type == 'I' || Auth::user()->account_type == 'B') {
+                return new UserResource(Auth::User());
+            }
             return new UserCollection(User::where($query)->paginate(10));
         }
     }

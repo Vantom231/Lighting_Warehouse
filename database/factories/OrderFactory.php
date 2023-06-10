@@ -23,6 +23,7 @@ class OrderFactory extends Factory
 
         return [
             'post_date' => $this->faker->dateTimeThisCentury(),
+            'finished' => $this->faker->randomElement([TRUE,FALSE]),
             'deliver' => $deliver,
             'deliver_address' => $deliver_address,
             'invoice' => $this->faker->randomElement([TRUE, FALSE])

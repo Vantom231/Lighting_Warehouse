@@ -61,7 +61,10 @@ Route::post('login', function (AuthRequest $request) {
 });
 
 Route::post('register', function (StoreUserRequest $request) {
-    return new UserResource(User::create($request->all()));
+    if ($request->account_type == 'I' || $request->account_type == 'B' ) {
+        return new UserResource(User::create($request->all()));
+    }
+    return response()->json(["message"=>"Authentication Required!"], 401);
 });
 
 Route::get('categories',function () {

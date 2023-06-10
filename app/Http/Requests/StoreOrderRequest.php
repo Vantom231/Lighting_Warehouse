@@ -27,7 +27,8 @@ class StoreOrderRequest extends FormRequest
             'sendDate' => ['date'],
             'deliver' => ['required', 'boolean'],
             'deliverAddress' => ['string'],
-            'invoice' => ['required', 'boolean']
+            'invoice' => ['required', 'boolean'],
+            'finished' => ['required', 'boolean']
         ];
     }
 
