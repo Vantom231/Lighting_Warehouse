@@ -20,7 +20,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         $this->counter++;
-        $company_name = NULL;
+        $comapny_name = NULL;
         $nip = NULL;
         $company_address = NULL;
         $company_mailing_address = NULL;
@@ -50,7 +50,7 @@ class UserFactory extends Factory
             'last_name' => $this->faker->lastName(),
             'pesel' => (string)$this->faker->numberBetween(10000000000, 99999999999),
             'mailing_address' => $this->faker->address(),
-            'company_name' => $company_name,
+            'company_name' => $comapny_name,
             'nip' => $nip,
             'company_address' => $company_address,
             'company_mailing_address' => $company_mailing_address

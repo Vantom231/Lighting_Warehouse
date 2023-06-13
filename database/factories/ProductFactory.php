@@ -153,7 +153,8 @@ class ProductFactory extends Factory
             'energy_class_old' => $energyOld,
             'energy_class_new' => $energyNew,
             'price' => $this->faker->numberBetween(2000,50000)/100,
-            'description' => $this->productDescription[$this->counter-1][2]
+            'description' => $this->productDescription[$this->counter-1][2],
+            'img_path' => '/img'.'/'.$this->faker->numberBetween(1,5).".jpg"
         ];
     }
 }

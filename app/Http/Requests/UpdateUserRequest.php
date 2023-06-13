@@ -37,7 +37,7 @@ class UpdateUserRequest extends FormRequest
                 'nip' => ['string'],
                 'companyAddress'=> ['string'],
                 'companyMailingAddress' => ['string'],
-                'accountType' => ['required', Rule::in(['A', 'W', 'C'])]
+                'accountType' => ['required', Rule::in(['A', 'W', 'I', 'B'])]
             ];
         } else {
             return [
@@ -52,7 +52,7 @@ class UpdateUserRequest extends FormRequest
                 'nip' => ['sometimes', 'string'],
                 'companyAddress'=> ['sometimes', 'string'],
                 'companyMailingAddress' => ['sometimes', 'string'],
-                'accountType' => ['sometimes', 'required', Rule::in(['A', 'W', 'C'])]
+                'accountType' => ['sometimes', 'required', Rule::in(['A', 'W', 'I', 'B'])]
             ];
         }
     }
