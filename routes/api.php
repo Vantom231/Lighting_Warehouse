@@ -58,6 +58,7 @@ Route::post('login', function (AuthRequest $request) {
         return ['token' => $user->createToken('exampleToken')->plainTextToken];
 
     }
+    return response()->json(['error' => 'Unauthenticated.'], 401);
 });
 
 Route::post('register', function (StoreUserRequest $request) {

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('pesel',11)->unique();
             $table->string('mailing_address');
             $table->string('company_name')->nullable();
-            $table->string('nip',10)->unique()->nullable();
+            $table->string('nip',11)->unique()->nullable();
             $table->string('company_address')->nullable();
             $table->string('company_mailing_address')->nullable();
         });

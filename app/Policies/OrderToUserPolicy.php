@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\OrderToUser;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class OrderToUserPolicy
 {
@@ -13,7 +14,7 @@ class OrderToUserPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +22,7 @@ class OrderToUserPolicy
      */
     public function view(User $user, OrderToUser $orderToUser): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +30,7 @@ class OrderToUserPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +38,7 @@ class OrderToUserPolicy
      */
     public function update(User $user, OrderToUser $orderToUser): bool
     {
-        //
+        return Auth::user()->account_type == 'A' || Auth::user()->account_type == 'W';
     }
 
     /**
@@ -45,7 +46,7 @@ class OrderToUserPolicy
      */
     public function delete(User $user, OrderToUser $orderToUser): bool
     {
-        //
+        return Auth::user()->account_type == 'A' || Auth::user()->account_type == 'W';
     }
 
     /**
@@ -53,7 +54,7 @@ class OrderToUserPolicy
      */
     public function restore(User $user, OrderToUser $orderToUser): bool
     {
-        //
+        return Auth::user()->account_type == 'A' || Auth::user()->account_type == 'W';
     }
 
     /**
@@ -61,6 +62,6 @@ class OrderToUserPolicy
      */
     public function forceDelete(User $user, OrderToUser $orderToUser): bool
     {
-        //
+        return Auth::user()->account_type == 'A' || Auth::user()->account_type == 'W';
     }
 }

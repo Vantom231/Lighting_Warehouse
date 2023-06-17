@@ -2,9 +2,12 @@
 
 namespace App\Policies;
 
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryPolicy
 {
@@ -13,7 +16,7 @@ class CategoryPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,31 +24,31 @@ class CategoryPolicy
      */
     public function view(User $user, Category $category): bool
     {
-        //
+        return true;
     }
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(StoreCategoryRequest $request): bool
     {
-        //
+        return Auth::user()->account_type == 'A';
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Category $category): bool
+    public function update(UpdateCategoryRequest $request, Category $category): bool
     {
-        //
+        return Auth::user()->account_type == 'A';
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Category $category): bool
+    public function delete(Category $category): bool
     {
-        //
+        return Auth::user()->account_type == 'A';
     }
 
     /**
@@ -53,7 +56,7 @@ class CategoryPolicy
      */
     public function restore(User $user, Category $category): bool
     {
-        //
+        return Auth::user()->account_type == 'A';
     }
 
     /**
@@ -61,6 +64,6 @@ class CategoryPolicy
      */
     public function forceDelete(User $user, Category $category): bool
     {
-        //
+        return Auth::user()->account_type == 'A';
     }
 }

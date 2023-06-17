@@ -57,7 +57,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return new UserResource($user);
+        if ( Auth::user()->account_type == 'A' || Auth::user()->account_type=='W') return new UserResource($user);
+        else return new UserResource(Auth::user());
     }
 
     /**
@@ -73,7 +74,11 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-       $user->update($request->all());
+       if (Auth::user()->account_type == 'A' || Auth::user()->account_type == 'W' || Auth::user()->id == $user->id) {
+        $user->update($request->all());
+        return response()->json(["message", "User updated"], 200);
+       }
+       return response()->json(["message", "Authentication Required!"], 401);
     }
 
     /**

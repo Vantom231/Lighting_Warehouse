@@ -25,10 +25,28 @@ class UserFactory extends Factory
         $company_address = NULL;
         $company_mailing_address = NULL;
         $first_name = $this->faker->firstName();
+        $email = $this->faker->unique()->email();
+        $password = Hash::make($first_name . "1234");
 
-        if ($this->counter <= 4) $type = 'A';
-        else if ($this->counter <= 15) $type = 'W';
+        if ($this->counter <= 4) {
+            if ($this->counter == 1) {
+                $email = "admin@example.com";
+                $password = Hash::make("1234");
+            }
+            $type = 'A';
+        }
+        else if ($this->counter <= 15) {
+            if ($this->counter == 5) {
+                $email = "worker@example.com";
+                $password = Hash::make("1234");
+            }
+            $type = 'W';
+        }
         else {
+            if ($this->counter == 16) {
+                $email = "client@example.com";
+                $password = Hash::make("1234");
+            }
             $type = $this->faker->randomElement(['I', 'B']);
 
             if ($type == 'B') {
@@ -41,9 +59,9 @@ class UserFactory extends Factory
 
         return [
             'name' => $first_name,
-            'email' => $this->faker->unique()->email(),
+            'email' => $email,
             'email_verified_at' => now(),
-            'password' => Hash::make($first_name . "1234"),
+            'password' => $password,
             'remember_token' => Str::random(10),
             'account_type' => $type,
             'first_name' => $first_name,

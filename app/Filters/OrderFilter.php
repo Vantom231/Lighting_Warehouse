@@ -8,7 +8,7 @@ class OrderFilter extends Filter {
         'acceptDate' => ['eq', 'neq','lt', 'lte', 'gt', 'gte'],
         'sendDate' => ['eq', 'neq','lt', 'lte', 'gt', 'gte'],
         'deliver' => ['eq', 'neq'],
-        'deliverAddress' => ['eq', 'neq'],
+        'deliverAddress' => ['eq', 'neq', 'like'],
         'invoice' => ['eq', 'neq'],
         'finished' => ['eq', 'neq']
     ];

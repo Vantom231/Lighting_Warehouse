@@ -5,7 +5,7 @@ class ProductFilter extends Filter {
     protected $safeParms = [
         'id' => ['eq', 'neq', 'lt', 'lte', 'gt', 'gte'],
         'subcategoryId' => ['eq', 'neq', 'lt', 'lte', 'gt', 'gte'],
-        'name' => ['eq', 'neq'],
+        'name' => ['eq', 'neq', 'like'],
         'height' => ['eq', 'neq', 'lt', 'lte', 'gt', 'gte'],
         'width' => ['eq', 'neq', 'lt', 'lte', 'gt', 'gte'],
         'baseMaterial' => ['eq', 'neq'],

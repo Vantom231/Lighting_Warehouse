@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Subcategory;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class SubcategoryPolicy
 {
@@ -13,7 +14,7 @@ class SubcategoryPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +22,7 @@ class SubcategoryPolicy
      */
     public function view(User $user, Subcategory $subcategory): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +30,7 @@ class SubcategoryPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return Auth::user()->account_type == 'A';
     }
 
     /**
@@ -37,7 +38,7 @@ class SubcategoryPolicy
      */
     public function update(User $user, Subcategory $subcategory): bool
     {
-        //
+        return Auth::user()->account_type == 'A';
     }
 
     /**
@@ -45,7 +46,7 @@ class SubcategoryPolicy
      */
     public function delete(User $user, Subcategory $subcategory): bool
     {
-        //
+        return Auth::user()->account_type == 'A';
     }
 
     /**
@@ -53,7 +54,7 @@ class SubcategoryPolicy
      */
     public function restore(User $user, Subcategory $subcategory): bool
     {
-        //
+        return Auth::user()->account_type == 'A';
     }
 
     /**
@@ -61,6 +62,6 @@ class SubcategoryPolicy
      */
     public function forceDelete(User $user, Subcategory $subcategory): bool
     {
-        //
+        return Auth::user()->account_type == 'A';
     }
 }

@@ -12,7 +12,8 @@ class Filter {
         'lte' => '<=',
         'gt' => '>',
         'gte' => '>=',
-        'neq' => '!='
+        'neq' => '!=',
+        'like' => 'like'
     ];
 
     public function transform(Request $request) {

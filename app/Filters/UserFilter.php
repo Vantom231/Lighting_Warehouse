@@ -4,17 +4,17 @@ namespace App\Filters;
 class UserFilter extends Filter {
     protected $safeParms = [
         'id' => ['eq', 'neq', 'lt', 'lte', 'gt', 'gte'],
-        'name' => ['eq', 'neq'],
-        'firstName' => ['eq', 'neq'],
-        'lastName' => ['eq', 'neq'],
-        'pesel' => ['eq', 'neq'],
-        'email' => ['eq', 'neq'],
+        'name' => ['eq', 'neq', 'like'],
+        'firstName' => ['eq', 'neq', 'like'],
+        'lastName' => ['eq', 'neq', 'like'],
+        'pesel' => ['eq', 'neq', 'like'],
+        'email' => ['eq', 'neq', 'like'],
         'emailVerifiedAt' => ['eq', 'neq', 'lt', 'lte', 'gt', 'gte'],
-        'mailingAddress' => ['eq', 'neq'],
-        'companyName' => ['eq', 'neq'],
-        'nip' => ['eq', 'neq'],
-        'companyAddress' => ['eq', 'neq'],
-        'companyMailingAddress' => ['eq', 'neq'],
+        'mailingAddress' => ['eq', 'neq', 'like'],
+        'companyName' => ['eq', 'neq', 'like'],
+        'nip' => ['eq', 'neq', 'like'],
+        'companyAddress' => ['eq', 'neq', 'like'],
+        'companyMailingAddress' => ['eq', 'neq', 'like'],
         'accountType' => ['eq', 'neq'],
 
     ];
