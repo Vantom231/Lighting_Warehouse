@@ -25,7 +25,7 @@ class StoreOrderToUserRequest extends FormRequest
         return [
             'userId' => ['required', 'integer'],
             'orderId' => ['required', 'integer'],
-            'role' => ['required', Rule::in(['C','A','S'])]
+            'role' => ['required', Rule::in(['C','A','S','Z','X','P'])]
         ];
     }
 
